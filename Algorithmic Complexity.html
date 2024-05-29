@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIT221 Practical Task 2.1 - Space and Time Complexity</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        pre {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>SIT221 Practical Task 2.1 - Space and Time Complexity</h1>
+    
+    <section>
+        <h2>Task Objective</h2>
+        <p>In this task, you will use your knowledge and skills of algorithm space and time complexity to answer a series of questions. The goal is to measure and compare the efficiency of different algorithms to ensure we write solutions that run as efficiently as possible.</p>
+    </section>
+
+    <section>
+        <h2>Background</h2>
+        <p>The way we write code affects its runtime speed and memory usage. For small data sets, efficiency may not be crucial. However, for large data sets in real-world applications, selecting the right algorithm is critical. We define complexity as the time it takes to solve a problem for an input size of <code>n</code> elements, expressed as <code>T(n)</code>.</p>
+        <p>We can evaluate complexity using methods such as:</p>
+        <ul>
+            <li>Operation Counting</li>
+            <li>Asymptotic Notations</li>
+            <li>Substitution Method</li>
+            <li>Recurrence Tree</li>
+            <li>Master Method</li>
+        </ul>
+        <p>In this unit, we focus on Operation Counting and Asymptotic Notations.</p>
+    </section>
+
+    <section>
+        <h2>Asymptotic Notations</h2>
+        <p>Asymptotic notation classifies algorithms based on their performance. The common notations are:</p>
+        <ul>
+            <li><strong>Big-O (O)</strong>: Upper Bound</li>
+            <li><strong>Big Omega (Ω)</strong>: Lower Bound</li>
+            <li><strong>Big Theta (Θ)</strong>: Tightly Bound</li>
+        </ul>
+        <p>These notations help group algorithms that behave similarly, based on the number of elementary steps taken in constant time.</p>
+    </section>
+
+    <section>
+        <h2>Questions</h2>
+        <p>For each algorithm, answer the following:</p>
+        <ol>
+            <li>Number of operations in best, worst, and average cases.</li>
+            <li>Describe best, worst, and average case using Big-Θ notation.</li>
+            <li>Overall performance using the tightest possible class in Big-O notation.</li>
+            <li>Overall performance using the tightest possible class in Big-Ω notation.</li>
+            <li>Overall performance using Big-Θ notation.</li>
+            <li>Best way to succinctly describe performance using asymptotic notation.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Common Asymptotic Classes</h2>
+        <p>Algorithms are typically placed in classes such as:</p>
+        <ul>
+            <li>O(1): Constant time</li>
+            <li>O(log n): Logarithmic time</li>
+            <li>O(n): Linear time</li>
+            <li>O(n log n): Linearithmic time</li>
+            <li>O(n^2): Quadratic time</li>
+            <li>O(2^n): Exponential time</li>
+            <li>O(n!): Factorial time</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Space and Time Complexity</h2>
+        <p>Space complexity refers to the amount of memory an algorithm uses in relation to the input size. Time complexity refers to the amount of time an algorithm takes to complete. Both are crucial in evaluating algorithm efficiency.</p>
+        <h3>Pseudo Code and Analysis</h3>
+        <pre>
+Example Algorithm:
+    function exampleAlgorithm(arr):
+        for i from 0 to length(arr) - 1:
+            for j from i + 1 to length(arr):
+                if arr[i] > arr[j]:
+                    swap(arr[i], arr[j])
+
+Time Complexity Analysis:
+    - Best case: O(n^2) - No swaps needed, still iterates through the array.
+    - Worst case: O(n^2) - Full iteration and swaps needed.
+    - Average case: O(n^2) - Typically performs as the worst case.
+
+Space Complexity Analysis:
+    - O(1) - Uses a constant amount of extra space.
+        </pre>
+    </section>
+
+    <section>
+        <h2>Video Resources</h2>
+        <p>Watch these videos to understand Binary Search and Complexity Analysis better:</p>
+        
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/9TlHvipP5yA?si=bUEAE_2yQ9m6hvXw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+
+    <section>
+        <h2>Conclusion</h2>
+        <p>Understanding space and time complexity is essential for writing efficient algorithms. By evaluating algorithms using asymptotic notations, we can make informed decisions about which algorithms to use in different scenarios. This task not only improves your understanding of these concepts but also prepares you for more advanced algorithmic challenges.</p>
+    </section>
+</body>
+</html>

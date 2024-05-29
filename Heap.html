@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up-Heap and Down-Heap Operations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        pre {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding Up-Heap and Down-Heap Operations</h1>
+    
+    <section>
+        <h2>Introduction to Heaps</h2>
+        <p>A heap is a specialized tree-based data structure that satisfies the heap property. In a max-heap, for any given node <code>i</code>, the value of <code>i</code> is greater than or equal to the values of its children. Conversely, in a min-heap, the value of <code>i</code> is less than or equal to the values of its children.</p>
+    </section>
+    
+    <section>
+        <h2>Up-Heap (Heapify Up)</h2>
+        <p>Up-Heap, also known as heapify-up, is the process of moving a node up in the tree to restore the heap property after an insertion. This operation is performed by comparing the node with its parent and swapping them if the heap property is violated.</p>
+        <p>Steps of Up-Heap:</p>
+        <ol>
+            <li>Insert the new node at the end of the heap.</li>
+            <li>Compare the new node with its parent; if they are out of order, swap them.</li>
+            <li>Repeat step 2 until the heap property is restored or the node becomes the root.</li>
+        </ol>
+        <h3>Example</h3>
+        <p>Consider inserting the value 15 into the max-heap:</p>
+        <pre>
+Initial Heap: 
+    [20, 18, 12, 11]
+
+After inserting 15:
+    [20, 18, 12, 11, 15]
+
+Up-Heap steps:
+    Compare 15 with parent 11
+    Swap 15 with 11:
+    [20, 18, 12, 15, 11]
+
+    Compare 15 with parent 18 (no swap needed)
+
+Heap property restored:
+    [20, 18, 12, 15, 11]
+        </pre>
+        <h3>Pseudo Code</h3>
+        <pre>
+function upHeap(heap, index):
+    while index > 0 and heap[index] > heap[parent(index)]:
+        swap(heap, index, parent(index))
+        index = parent(index)
+        </pre>
+    </section>
+    
+    <section>
+        <h2>Down-Heap (Heapify Down)</h2>
+        <p>Down-Heap, also known as heapify-down, is the process of moving a node down in the tree to restore the heap property after a deletion. This operation involves comparing the node with its children and swapping it with the appropriate child if the heap property is violated.</p>
+        <p>Steps of Down-Heap:</p>
+        <ol>
+            <li>Remove the root node (usually the maximum or minimum element, depending on the heap type).</li>
+            <li>Replace the root with the last element in the heap.</li>
+            <li>Compare the new root with its children; if they are out of order, swap it with the correct child.</li>
+            <li>Repeat step 3 until the heap property is restored or the node reaches a leaf.</li>
+        </ol>
+        <h3>Example</h3>
+        <p>Consider removing the root (20) from the max-heap:</p>
+        <pre>
+Initial Heap: 
+    [20, 18, 12, 15, 11]
+
+After removing 20:
+    [11, 18, 12, 15]
+
+Down-Heap steps:
+    Replace root with last element:
+    [11, 18, 12, 15]
+
+    Compare 11 with children 18 and 12
+    Swap 11 with 18:
+    [18, 11, 12, 15]
+
+    Compare 11 with child 15
+    Swap 11 with 15:
+    [18, 15, 12, 11]
+
+Heap property restored:
+    [18, 15, 12, 11]
+        </pre>
+        <h3>Pseudo Code</h3>
+        <pre>
+function downHeap(heap, index):
+    size = length(heap)
+    while leftChild(index) < size:
+        largerChild = leftChild(index)
+        if rightChild(index) < size and heap[rightChild(index)] > heap[leftChild(index)]:
+            largerChild = rightChild(index)
+        if heap[index] >= heap[largerChild]:
+            break
+        swap(heap, index, largerChild)
+        index = largerChild
+        </pre>
+    </section>
+</body>
+</html>

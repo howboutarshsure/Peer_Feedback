@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doubly Linked List Operations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        pre {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Doubly Linked List Operations</h1>
+
+    <section>
+        <h2>Introduction to Doubly Linked Lists</h2>
+        <p>A doubly linked list is a linear data structure consisting of nodes where each node contains a data record and two pointers: one to the next node and one to the previous node. This allows traversal in both directions.</p>
+    </section>
+
+    <section>
+        <h2>Structure of a Doubly Linked List</h2>
+        <p>The doubly linked list uses auxiliary nodes: the Head and the Tail, which simplify implementation and are always maintained, even when the list is empty.</p>
+        <pre>
+Node {
+    Value
+    Next
+    Previous
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2>Basic Operations</h2>
+        
+        <h3>AddFirst</h3>
+        <p>Adds a new node containing the specified value at the start of the doubly linked list. This involves creating a new node and adjusting the pointers of the Head and the next node.</p>
+        <pre>
+function AddFirst(value):
+    node = new Node(value)
+    node.Next = Head.Next
+    node.Previous = Head
+    Head.Next.Previous = node
+    Head.Next = node
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-1" target="_blank">Visualize AddFirst Operation</a></p>
+        
+        <h3>AddLast</h3>
+        <p>Adds a new node containing the specified value at the end of the doubly linked list. This involves creating a new node and adjusting the pointers of the Tail and the previous node.</p>
+        <pre>
+function AddLast(value):
+    node = new Node(value)
+    node.Previous = Tail.Previous
+    node.Next = Tail
+    Tail.Previous.Next = node
+    Tail.Previous = node
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-1" target="_blank">Visualize AddLast Operation</a></p>
+        
+        <h3>RemoveFirst</h3>
+        <p>Removes the node at the start of the doubly linked list. This involves adjusting the pointers of the Head and the next node to exclude the first node.</p>
+        <pre>
+function RemoveFirst():
+    if Head.Next == Tail:
+        throw "List is empty"
+    node = Head.Next
+    Head.Next = node.Next
+    node.Next.Previous = Head
+    node = null
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-3" target="_blank">Visualize RemoveFirst Operation</a></p>
+
+        <h3>RemoveLast</h3>
+        <p>Removes the node at the end of the doubly linked list. This involves adjusting the pointers of the Tail and the previous node to exclude the last node.</p>
+        <pre>
+function RemoveLast():
+    if Tail.Previous == Head:
+        throw "List is empty"
+    node = Tail.Previous
+    Tail.Previous = node.Previous
+    node.Previous.Next = Tail
+    node = null
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-3" target="_blank">Visualize RemoveLast Operation</a></p>
+    </section>
+
+    <section>
+        <h2>Other Operations</h2>
+        
+        <h3>AddBefore</h3>
+        <p>Adds a new node before the specified node. This involves creating a new node and adjusting the pointers of the given node and its previous node.</p>
+        <pre>
+function AddBefore(node, value):
+    if node == null:
+        throw "Invalid node"
+    newNode = new Node(value)
+    newNode.Previous = node.Previous
+    newNode.Next = node
+    node.Previous.Next = newNode
+    node.Previous = newNode
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-2" target="_blank">Visualize AddBefore Operation</a></p>
+
+        <h3>AddAfter</h3>
+        <p>Adds a new node after the specified node. This involves creating a new node and adjusting the pointers of the given node and its next node.</p>
+        <pre>
+function AddAfter(node, value):
+    if node == null:
+        throw "Invalid node"
+    newNode = new Node(value)
+    newNode.Next = node.Next
+    newNode.Previous = node
+    node.Next.Previous = newNode
+    node.Next = newNode
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-2" target="_blank">Visualize AddAfter Operation</a></p>
+
+        <h3>Remove</h3>
+        <p>Removes the specified node from the doubly linked list. This involves adjusting the pointers of the previous and next nodes to exclude the given node.</p>
+        <pre>
+function Remove(node):
+    if node == null:
+        throw "Invalid node"
+    node.Previous.Next = node.Next
+    node.Next.Previous = node.Previous
+    node = null
+        </pre>
+        <p><a href="https://visualgo.net/en/list?slide=6-3" target="_blank">Visualize Remove Operation</a></p>
+    </section>
+</body>
+</html>

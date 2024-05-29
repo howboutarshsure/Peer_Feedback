@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Class Operations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        pre {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vector Class Operations</h1>
+
+    <section>
+        <h2>Introduction to Vector Class</h2>
+        <p>The <code>Vector</code> class is a resizable array that can hold elements of any data type. It dynamically adjusts its capacity as elements are added or removed.</p>
+    </section>
+
+    <section>
+        <h2>Binary Search</h2>
+        <p>Binary Search is a highly efficient search algorithm that uses a divide-and-conquer approach. It works on sorted arrays by repeatedly dividing the search interval in half. If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half. Otherwise, narrow it to the upper half. The algorithm has a time complexity of O(log n).</p>
+        <h3>Pseudo Code</h3>
+        <pre>
+Binary Search:
+    function binarySearch(arr, item):
+        return recursiveBinarySearch(arr, item, 0, length(arr) - 1)
+
+    function recursiveBinarySearch(arr, item, low, high):
+        if high < low:
+            return -1
+        mid = low + (high - low) / 2
+        if arr[mid] == item:
+            return mid
+        else if arr[mid] > item:
+            return recursiveBinarySearch(arr, item, low, mid - 1)
+        else:
+            return recursiveBinarySearch(arr, item, mid + 1, high)
+        </pre>
+        <h3>Time and Space Complexity</h3>
+        <p><strong>Time Complexity:</strong> O(log n). Binary Search halves the search space with each iteration, making it very efficient for large datasets.</p>
+        <p><strong>Space Complexity:</strong> O(1). Binary Search uses a constant amount of extra space for variables such as <code>low</code>, <code>high</code>, and <code>mid</code>. If implemented recursively, the space complexity can become O(log n) due to the call stack.</p>
+        <p><a href="https://www.geeksforgeeks.org/binary-search/" target="_blank">Learn more about Binary Search</a></p>
+        <p>Watch this video to understand Binary Search better:</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MFhxShGxHWc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+
+    <section>
+        <h2>Iterator Design Pattern</h2>
+        <p>The Iterator pattern allows sequential access to the elements of a data structure without exposing its underlying representation. This pattern is commonly used with collection-type classes, such as lists, stacks, and queues.</p>
+        <h3>Pseudo Code</h3>
+        <pre>
+Iterator Pattern:
+    class VectorIterator:
+        function __init__(data, count):
+            self._data = data
+            self._count = count
+            self._position = -1
+
+        function current():
+            if self._position == -1 or self._position >= self._count:
+                return null
+            return self._data[self._position]
+
+        function moveNext():
+            if self._position < self._count - 1:
+                self._position += 1
+                return true
+            return false
+
+        function reset():
+            self._position = -1
+
+    class Vector:
+        function getEnumerator():
+            return VectorIterator(self._data, self._count)
+        </pre>
+        <h3>Time and Space Complexity</h3>
+        <p><strong>Time Complexity:</strong> O(1) per operation. Each operation (moveNext, current, reset) in the iterator runs in constant time.</p>
+        <p><strong>Space Complexity:</strong> O(1). The iterator only needs a few variables to keep track of the current position and reference to the data array.</p>
+        <p><a href="https://www.geeksforgeeks.org/iterator-pattern/" target="_blank">Learn more about Iterator Pattern</a></p>
+    </section>
+</body>
+</html>

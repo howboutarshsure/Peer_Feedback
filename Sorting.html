@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        pre {
+            background-color: navy;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding Sorting Algorithms</h1>
+    
+    <section>
+        <h2>Bubble Sort</h2>
+        <p>Bubble Sort is a simple comparison-based sorting algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.</p>
+        <pre>
+Bubble Sort:
+    function bubbleSort(arr):
+        n = length(arr)
+        for i from 0 to n-1:
+            for j from 0 to n-i-1:
+                if arr[j] > arr[j+1]:
+                    swap(arr[j], arr[j+1])
+        return arr
+        </pre>
+        <p><a href="https://visualgo.net/en/sorting?slide=1" target="_blank">Visualize Bubble Sort</a></p>
+    </section>
+    
+    <section>
+        <h2>Insertion Sort</h2>
+        <p>Insertion Sort builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort or merge sort.</p>
+        <pre>
+Insertion Sort:
+    function insertionSort(arr):
+        for i from 1 to length(arr)-1:
+            key = arr[i]
+            j = i-1
+            while j >= 0 and arr[j] > key:
+                arr[j+1] = arr[j]
+                j = j-1
+            arr[j+1] = key
+        return arr
+        </pre>
+        <p><a href="https://visualgo.net/en/sorting?slide=2" target="_blank">Visualize Insertion Sort</a></p>
+    </section>
+    
+    <section>
+        <h2>Selection Sort</h2>
+        <p>Selection Sort divides the input list into two parts: a sorted sublist of items which is built up from left to right and a sublist of the remaining unsorted items. It repeatedly selects the smallest (or largest) element from the unsorted sublist, swapping it with the leftmost unsorted element, and moving the sublist boundaries one element to the right.</p>
+        <pre>
+Selection Sort:
+    function selectionSort(arr):
+        for i from 0 to length(arr)-1:
+            minIdx = i
+            for j from i+1 to length(arr):
+                if arr[j] < arr[minIdx]:
+                    minIdx = j
+            swap(arr[i], arr[minIdx])
+        return arr
+        </pre>
+        <p><a href="https://visualgo.net/en/sorting?slide=3" target="_blank">Visualize Selection Sort</a></p>
+    </section>
+    
+    <section>
+        <h2>Randomized Quick Sort</h2>
+        <p>Randomized Quick Sort is a variation of the quicksort algorithm that selects a pivot randomly to avoid worst-case scenarios on certain types of input data.</p>
+        <pre>
+Randomized Quick Sort:
+    function randomizedPartition(arr, low, high):
+        pivotIdx = random(low, high)
+        swap(arr[pivotIdx], arr[high])
+        return partition(arr, low, high)
+
+    function partition(arr, low, high):
+        pivot = arr[high]
+        i = low - 1
+        for j from low to high-1:
+            if arr[j] <= pivot:
+                i = i + 1
+                swap(arr[i], arr[j])
+        swap(arr[i + 1], arr[high])
+        return i + 1
+
+    function randomizedQuickSort(arr, low, high):
+        if low < high:
+            pi = randomizedPartition(arr, low, high)
+            randomizedQuickSort(arr, low, pi - 1)
+            randomizedQuickSort(arr, pi + 1, high)
+        return arr
+        </pre>
+        <p><a href="https://visualgo.net/en/sorting?slide=7" target="_blank">Visualize Randomized Quick Sort</a></p>
+    </section>
+    
+    <section>
+        <h2>Merge Sort (Top-Down)</h2>
+        <p>Merge Sort is a divide-and-conquer algorithm that splits the list into equal halves until each sublist contains a single element, then merges the sublists to produce a sorted list.</p>
+        <pre>
+Merge Sort (Top-Down):
+    function mergeSortTopDown(arr):
+        if length(arr) > 1:
+            mid = length(arr) // 2
+            leftHalf = arr[0:mid]
+            rightHalf = arr[mid:length(arr)]
+
+            mergeSortTopDown(leftHalf)
+            mergeSortTopDown(rightHalf)
+
+            i = j = k = 0
+
+            while i < length(leftHalf) and j < length(rightHalf):
+                if leftHalf[i] < rightHalf[j]:
+                    arr[k] = leftHalf[i]
+                    i = i + 1
+                else:
+                    arr[k] = rightHalf[j]
+                    j = j + 1
+                k = k + 1
+
+            while i < length(leftHalf):
+                arr[k] = leftHalf[i]
+                i = i + 1
+                k = k + 1
+
+            while j < length(rightHalf):
+                arr[k] = rightHalf[j]
+                j = j + 1
+                k = k + 1
+        return arr
+        </pre>
+        <p><a href="https://visualgo.net/en/sorting?slide=4" target="_blank">Visualize Merge Sort (Top-Down)</a></p>
+    </section>
+    
+    <section>
+        <h2>Merge Sort (Bottom-Up)</h2>
+        <p>Merge Sort (Bottom-Up) is an iterative version of merge sort that sorts small sublists and then merges them repeatedly to form a sorted list.</p>
+        <pre>
+Merge Sort (Bottom-Up):
+    function mergeSortBottomUp(arr):
+        width = 1
+        n = length(arr)
+        while width < n:
+            for i from 0 to n by 2*width:
+                left = arr[i:i+width]
+                right = arr[i+width:i+2*width]
+                arr[i:i+2*width] = merge(left, right)
+            width = 2 * width
+        return arr
+
+    function merge(left, right):
+        result = []
+        i = j = 0
+        while i < length(left) and j < length(right):
+            if left[i] < right[j]:
+                result.append(left[i])
+                i = i + 1
+            else:
+                result.append(right[j])
+                j = j + 1
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
+        </pre>
+        <p><a href="https://visualgo.net/en/sorting?slide=5" target="_blank">Visualize Merge Sort (Bottom-Up)</a></p>
+    </section>
+</body>
+</html>
